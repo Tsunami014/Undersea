@@ -8,9 +8,17 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var vel = Input.get_vector("left", "right", "up", "down")
 	velocity = vel * speed
 	move_and_slide()
 	if vel.x != 0:
 		$Sprite.flip_h = vel.x < 0
+	if velocity.is_zero_approx():
+		$Sprite.stop()
+	else:
+		if not $Sprite.is_playing():
+			$Sprite.play("default")
+			$Sprite.frame += 1
+		else:
+			$Sprite.play("default")
