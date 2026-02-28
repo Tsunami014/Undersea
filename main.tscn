@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://ca8ud5tj3lnii"]
+[gd_scene load_steps=18 format=4 uid="uid://ca8ud5tj3lnii"]
 
 [ext_resource type="TileSet" uid="uid://bdfw371584336" path="res://tileset.tres" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://dwnj1svdw8y2l" path="res://assets/Turtle.png" id="2_0xm2m"]
@@ -51,6 +51,9 @@ shader = ExtResource("4_lquwl")
 [sub_resource type="AtlasTexture" id="AtlasTexture_7mycd"]
 atlas = ExtResource("4_1bvp3")
 region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kek77"]
+radius = 6.0
 
 [node name="Node2D" type="Node2D"]
 
@@ -112,7 +115,14 @@ playerspeed = 12.0
 xdir = -1.0
 ydir = -0.8
 
-[node name="Tileset" type="Sprite2D" parent="."]
+[node name="Statue" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_7mycd")
 position = Vector2(103, 83)
 texture = SubResource("AtlasTexture_7mycd")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Statue"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Statue/StaticBody2D"]
+position = Vector2(0, 17)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_kek77")
