@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://ca8ud5tj3lnii"]
+[gd_scene load_steps=18 format=4 uid="uid://ca8ud5tj3lnii"]
 
 [ext_resource type="TileSet" uid="uid://bdfw371584336" path="res://tileset.tres" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://dwnj1svdw8y2l" path="res://assets/Turtle.png" id="2_0xm2m"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c6a0m4lcs3yr6" path="res://assets/wave2.png" id="7_efxa6"]
 [ext_resource type="PackedScene" uid="uid://djpk025al81ol" path="res://prefabs/statue.tscn" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://6irmy22wta26" path="res://prefabs/door.tscn" id="9_kek77"]
+[ext_resource type="Texture2D" uid="uid://dfcohytqjhl8h" path="res://assets/tileset.png" id="10_4c57u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kek77"]
 atlas = ExtResource("2_0xm2m")
@@ -44,6 +45,14 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h2yge"]
 radius = 10.000004
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dg77c"]
+atlas = ExtResource("10_4c57u")
+region = Rect2(64, 48, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycdy4"]
+atlas = ExtResource("10_4c57u")
+region = Rect2(64, 48, 32, 16)
 
 [node name="Node2D" type="Node2D"]
 
@@ -113,14 +122,18 @@ ydir = -0.8
 position = Vector2(103, 83)
 
 [node name="Door" parent="." node_paths=PackedStringArray("teleport") instance=ExtResource("9_kek77")]
+instance_shader_parameters/outline_colour = Color(0.291, 0.418, 0.445, 1)
 position = Vector2(169, 57)
+texture = SubResource("AtlasTexture_dg77c")
 teleport = NodePath("../Door2")
 
 [node name="Tele" type="Node2D" parent="Door"]
 position = Vector2(0, 20)
 
 [node name="Door2" parent="." node_paths=PackedStringArray("teleport") instance=ExtResource("9_kek77")]
-position = Vector2(396, 53)
+instance_shader_parameters/outline_colour = Color(0.291, 0.418, 0.445, 1)
+position = Vector2(417, 42)
+texture = SubResource("AtlasTexture_ycdy4")
 teleport = NodePath("../Door")
 
 [node name="Tele" type="Node2D" parent="Door2"]
