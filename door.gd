@@ -21,6 +21,7 @@ func _setColour(col: Color):
 
 func teleportPlayer():
 	%Player.global_position = teleport.get_node("Tele").global_position
+	%Player.velocity = Vector2(0, 0)
 
 func _process(_delta: float) -> void:
 	if inside and Input.is_action_just_pressed("action"):
