@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://djpk025al81ol"]
+
+[ext_resource type="Shader" uid="uid://judv6dphnhql" path="res://outline.gdshader" id="1_btnke"]
+[ext_resource type="Texture2D" uid="uid://dfcohytqjhl8h" path="res://assets/tileset.png" id="2_aocyf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7mycd"]
+shader = ExtResource("1_btnke")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mycd"]
+atlas = ExtResource("2_aocyf")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kek77"]
+radius = 6.0
+
+[node name="Statue" type="Sprite2D"]
+material = SubResource("ShaderMaterial_7mycd")
+texture = SubResource("AtlasTexture_7mycd")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 17)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_kek77")

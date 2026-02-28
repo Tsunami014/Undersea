@@ -1,14 +1,14 @@
-[gd_scene load_steps=18 format=4 uid="uid://ca8ud5tj3lnii"]
+[gd_scene load_steps=15 format=4 uid="uid://ca8ud5tj3lnii"]
 
 [ext_resource type="TileSet" uid="uid://bdfw371584336" path="res://tileset.tres" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://dwnj1svdw8y2l" path="res://assets/Turtle.png" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://73gk3ogbahji" path="res://changeVis.gd" id="2_7mycd"]
 [ext_resource type="Script" uid="uid://gd5xlecbt448" path="res://player.gd" id="3_h2yge"]
-[ext_resource type="Texture2D" uid="uid://dfcohytqjhl8h" path="res://assets/tileset.png" id="4_1bvp3"]
-[ext_resource type="Shader" uid="uid://judv6dphnhql" path="res://outline.gdshader" id="4_lquwl"]
 [ext_resource type="Texture2D" uid="uid://cx6q2idha12nr" path="res://assets/wave1.png" id="5_kek77"]
 [ext_resource type="Script" uid="uid://cf5cdmj1dth8a" path="res://wave.gd" id="6_4c57u"]
 [ext_resource type="Texture2D" uid="uid://c6a0m4lcs3yr6" path="res://assets/wave2.png" id="7_efxa6"]
+[ext_resource type="PackedScene" uid="uid://djpk025al81ol" path="res://prefabs/statue.tscn" id="8_5vw27"]
+[ext_resource type="PackedScene" uid="uid://6irmy22wta26" path="res://prefabs/door.tscn" id="9_kek77"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kek77"]
 atlas = ExtResource("2_0xm2m")
@@ -45,16 +45,6 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h2yge"]
 radius = 10.000004
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7mycd"]
-shader = ExtResource("4_lquwl")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7mycd"]
-atlas = ExtResource("4_1bvp3")
-region = Rect2(64, 0, 32, 48)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kek77"]
-radius = 6.0
-
 [node name="Node2D" type="Node2D"]
 
 [node name="BG" type="TileMapLayer" parent="."]
@@ -66,7 +56,7 @@ tile_map_data = PackedByteArray("AAAFAAYAAAACAAEAAAAFAAcAAAABAAIAAAAHAAcAAAACAAE
 tile_set = ExtResource("1_h2yge")
 
 [node name="Decor" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAIAAUAAAAEAAMAAAALAAUAAAAFAAQAAAAMAAYAAAAFAAMAAAAJAAcAAAAFAAMAAAAGAAgAAAAFAAMAAAACAAEAAAAFAAMAAAAAAAMAAAAFAAMAAAAPAAEAAAAFAAMAAAARAAQAAAAFAAMAAAAQAAgAAAAFAAMAAAAOAAoAAAAFAAMAAAAJAAsAAAAFAAMAAAD8/wQAAAAFAAMAAAD9/wkAAAAFAAMAAAADAAsAAAAFAAMAAAD//w0AAAAFAAMAAAAFAP//AAAFAAQAAAALAP7/AAAFAAQAAAAEAAgAAAAFAAQAAAD9/wYAAAAFAAQAAAD6/w0AAAAFAAMAAAD3/wkAAAAFAAMAAAD5/wMAAAAFAAMAAAD1/wMAAAAFAAMAAAD5/wYAAAAFAAMAAAD5//7/AAAFAAMAAAD9//7/AAAFAAMAAAD9/wAAAAAFAAMAAAASAP//AAAFAAMAAAAVAAUAAAAFAAMAAAARAAsAAAAFAAMAAAAQAA8AAAAFAAMAAAAJAA4AAAAFAAMAAAAKAAcAAAAEAAMAAAAHAAgAAAAEAAMAAAACAAYAAAAEAAMAAAAEAAQAAAAEAAMAAAADAAcAAAAEAAQAAAANAAQAAAAEAAQAAAANAAcAAAAEAAQAAAAOAP7/AAAEAAQAAAD9/wEAAAAEAAQAAAD6/wYAAAAEAAQAAAD+/wsAAAAEAAQAAAAMAA0AAAAEAAQAAAA=")
+tile_map_data = PackedByteArray("AAAIAAUAAAAGAAQAAAALAAUAAAAFAAQAAAAMAAYAAAAHAAQAAAAJAAcAAAAHAAQAAAAGAAgAAAAHAAQAAAACAAEAAAAHAAQAAAAAAAMAAAAHAAQAAAAPAAEAAAAHAAQAAAARAAQAAAAHAAQAAAAQAAgAAAAHAAQAAAAOAAoAAAAHAAQAAAAJAAsAAAAHAAQAAAD8/wQAAAAFAAMAAAD9/wkAAAAHAAQAAAADAAsAAAAHAAQAAAD//w0AAAAHAAQAAAAFAP//AAAFAAQAAAALAP7/AAAFAAQAAAAEAAgAAAAFAAQAAAD9/wYAAAAFAAQAAAD6/w0AAAAHAAQAAAD3/wkAAAAHAAQAAAD5/wMAAAAHAAQAAAD1/wMAAAAHAAQAAAD5/wYAAAAHAAQAAAD5//7/AAAHAAQAAAD9//7/AAAHAAQAAAD9/wAAAAAHAAQAAAASAP//AAAHAAQAAAAVAAUAAAAHAAQAAAARAAsAAAAHAAQAAAAQAA8AAAAHAAQAAAAJAA4AAAAHAAQAAAAKAAcAAAAGAAQAAAAHAAgAAAAGAAQAAAACAAYAAAAGAAQAAAAEAAQAAAAGAAQAAAADAAcAAAAEAAQAAAANAAQAAAAEAAQAAAANAAcAAAAEAAQAAAAOAP7/AAAEAAQAAAD9/wEAAAAEAAQAAAD6/wYAAAAEAAQAAAD+/wsAAAAEAAQAAAAMAA0AAAAEAAQAAAASAAIAAAAGAAQAAAAQAAEAAAAHAAQAAAA=")
 tile_set = ExtResource("1_h2yge")
 
 [node name="Collision" type="TileMapLayer" parent="."]
@@ -119,14 +109,8 @@ playerspeed = 12.0
 xdir = -1.0
 ydir = -0.8
 
-[node name="Statue" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_7mycd")
+[node name="Statue" parent="." instance=ExtResource("8_5vw27")]
 position = Vector2(103, 83)
-texture = SubResource("AtlasTexture_7mycd")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Statue"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Statue/StaticBody2D"]
-position = Vector2(0, 17)
-rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_kek77")
+[node name="Door" parent="." instance=ExtResource("9_kek77")]
+position = Vector2(169, 57)
