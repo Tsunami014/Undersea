@@ -27,7 +27,7 @@ tile_set = SubResource("TileSet_h2yge")
 position = Vector2(87, 58)
 script = ExtResource("3_h2yge")
 
-[node name="Turtle" type="Sprite2D" parent="CharacterBody2D" unique_id=483916766]
+[node name="Sprite" type="Sprite2D" parent="CharacterBody2D" unique_id=483916766]
 texture = ExtResource("2_0xm2m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=726588589]
