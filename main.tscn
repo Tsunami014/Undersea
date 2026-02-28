@@ -36,20 +36,21 @@ tile_map_data = PackedByteArray("AAABAAkAAAAEAAUAAAAAAAgAAAAEAAUAAAD//wcAAAAEAAU
 tile_set = ExtResource("1_h2yge")
 script = ExtResource("2_7mycd")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(61, 86)
 script = ExtResource("3_h2yge")
 
-[node name="Sprite" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite" type="Sprite2D" parent="Player"]
 texture = ExtResource("2_0xm2m")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_h2yge")
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+[node name="Camera2D" type="Camera2D" parent="Player"]
 
-[node name="Waves" type="Control" parent="CharacterBody2D/Camera2D"]
+[node name="Waves" type="Control" parent="Player/Camera2D"]
 visible = false
 z_index = 99
 layout_mode = 3
@@ -57,25 +58,24 @@ anchors_preset = 0
 script = ExtResource("2_7mycd")
 vis = true
 
-[node name="Wave1" type="Sprite2D" parent="CharacterBody2D/Camera2D/Waves"]
+[node name="Wave1" type="Sprite2D" parent="Player/Camera2D/Waves"]
 texture_repeat = 2
 texture = ExtResource("5_kek77")
 region_enabled = true
 region_rect = Rect2(0, 0, 354.2075, 241.87717)
 script = ExtResource("6_4c57u")
-alpha = 0.8
-speed = 24.0
 xdir = 0.8
 ydir = 1.0
 
-[node name="Wave2" type="Sprite2D" parent="CharacterBody2D/Camera2D/Waves"]
+[node name="Wave2" type="Sprite2D" parent="Player/Camera2D/Waves"]
 texture_repeat = 2
 texture = ExtResource("7_efxa6")
 region_enabled = true
 region_rect = Rect2(0, 0, 354.2075, 241.87717)
 script = ExtResource("6_4c57u")
 alpha = 0.5
-speed = 28.0
+speed = 13.0
+playerspeed = 12.0
 xdir = -1.0
 ydir = -0.8
 
