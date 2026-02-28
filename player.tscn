@@ -139,14 +139,14 @@ offset_left = 3.0
 offset_top = 3.0
 offset_right = 29.0
 offset_bottom = 29.0
-color = Color(0.23630622, 0.32983556, 0.46372902, 1)
+color = Color(0.18916357, 0.26998547, 0.2692831, 1)
 
 [node name="Colour" type="ColorRect" parent="Camera2D/Control/Airgui" unique_id=916876600]
 layout_mode = 0
 offset_left = 29.0
-offset_top = 29.0
+offset_top = 28.0
 offset_right = 55.0
-offset_bottom = 55.0
+offset_bottom = 52.0
 rotation = 3.1415927
 color = Color(0.42352942, 0.42352942, 0.42352942, 1)
 script = ExtResource("7_dw050")
