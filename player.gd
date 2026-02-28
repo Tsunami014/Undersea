@@ -11,6 +11,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var vel = Input.get_vector("left", "right", "up", "down")
 	velocity = vel * speed
-	move_and_collide(velocity * delta)
+	move_and_slide()
 	if vel.x != 0:
 		$Sprite.flip_h = vel.x < 0
