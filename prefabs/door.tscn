@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://6irmy22wta26"]
+
+[ext_resource type="Shader" uid="uid://judv6dphnhql" path="res://outline.gdshader" id="1_gx6vt"]
+[ext_resource type="Script" uid="uid://dfwb0bpp6sa56" path="res://door.gd" id="3_08et4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4c57u"]
+shader = ExtResource("1_gx6vt")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efxa6"]
+size = Vector2(28.75, 48.25)
+
+[node name="Door" type="Sprite2D"]
+material = SubResource("ShaderMaterial_4c57u")
+script = ExtResource("3_08et4")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 2)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_efxa6")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_body_exited"]

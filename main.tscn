@@ -1,60 +1,19 @@
 [gd_scene format=4 uid="uid://ca8ud5tj3lnii"]
 
 [ext_resource type="TileSet" uid="uid://bdfw371584336" path="res://tileset.tres" id="1_h2yge"]
-[ext_resource type="Texture2D" uid="uid://dwnj1svdw8y2l" path="res://assets/Turtle.png" id="2_0xm2m"]
 [ext_resource type="Script" path="res://changeVis.gd" id="2_7mycd"]
-[ext_resource type="Script" uid="uid://gd5xlecbt448" path="res://player.gd" id="3_h2yge"]
-[ext_resource type="Texture2D" uid="uid://dfcohytqjhl8h" path="res://assets/tileset.png" id="4_1bvp3"]
-[ext_resource type="Shader" path="res://outline.gdshader" id="4_lquwl"]
-[ext_resource type="Texture2D" uid="uid://cx6q2idha12nr" path="res://assets/wave1.png" id="5_kek77"]
-[ext_resource type="Script" path="res://wave.gd" id="6_4c57u"]
-[ext_resource type="Texture2D" uid="uid://c6a0m4lcs3yr6" path="res://assets/wave2.png" id="7_efxa6"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kek77"]
-atlas = ExtResource("2_0xm2m")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4c57u"]
-atlas = ExtResource("2_0xm2m")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_efxa6"]
-atlas = ExtResource("2_0xm2m")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_dg77c"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kek77")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4c57u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_efxa6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_efxa6")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
-}]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h2yge"]
-radius = 10.000004
-height = 40.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7mycd"]
-shader = ExtResource("4_lquwl")
+[ext_resource type="PackedScene" uid="uid://xumwhpchsmdx" path="res://player.tscn" id="3_7mycd"]
+[ext_resource type="PackedScene" uid="uid://djpk025al81ol" path="res://prefabs/statue.tscn" id="8_5vw27"]
+[ext_resource type="PackedScene" uid="uid://6irmy22wta26" path="res://prefabs/door.tscn" id="9_kek77"]
+[ext_resource type="Texture2D" uid="uid://dfcohytqjhl8h" path="res://assets/tileset.png" id="10_4c57u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7mycd"]
-atlas = ExtResource("4_1bvp3")
-region = Rect2(64, 0, 32, 48)
+atlas = ExtResource("10_4c57u")
+region = Rect2(64, 48, 32, 16)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kek77"]
-radius = 6.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_272bh"]
+atlas = ExtResource("10_4c57u")
+region = Rect2(64, 48, 32, 16)
 
 [node name="Node2D" type="Node2D" unique_id=1432825941]
 
@@ -72,68 +31,30 @@ tile_set = ExtResource("1_h2yge")
 
 [node name="Collision" type="TileMapLayer" parent="." unique_id=507049837]
 visible = false
-tile_map_data = PackedByteArray("AAABAAkAAAAEAAUAAAAAAAgAAAAEAAUAAAD//wcAAAAEAAUAAAD//wYAAAAEAAUAAAD//wgAAAAEAAUAAAAAAAkAAAAEAAUAAAABAAoAAAAEAAUAAAACAAoAAAAEAAUAAAADAAoAAAAEAAUAAAAEAAoAAAAEAAUAAAAFAAoAAAAEAAUAAAAGAAoAAAAEAAUAAAAHAAoAAAAEAAUAAAAIAAoAAAAEAAUAAAAJAAoAAAAEAAUAAAAKAAoAAAAEAAUAAAALAAoAAAAEAAUAAAAMAAoAAAAEAAUAAAANAAoAAAAEAAUAAAAOAAoAAAAEAAUAAAAPAAoAAAAEAAUAAAAPAAkAAAAEAAUAAAAPAAgAAAAEAAUAAAAQAAgAAAAEAAUAAAAQAAcAAAAEAAUAAAAQAAYAAAAEAAUAAAAQAAUAAAAEAAUAAAAQAAQAAAAEAAUAAAAQAAMAAAAEAAUAAAAQAAIAAAAEAAUAAAAPAAIAAAAEAAUAAAAOAAIAAAAEAAUAAAANAAIAAAAEAAUAAAAMAAIAAAAEAAUAAAAMAAMAAAAEAAUAAAALAAMAAAAEAAUAAAAKAAMAAAAEAAUAAAAJAAMAAAAEAAUAAAAIAAMAAAAEAAUAAAAIAAIAAAAEAAUAAAAIAAEAAAAEAAUAAAAHAAEAAAAEAAUAAAAGAAEAAAAEAAUAAAAFAAEAAAAEAAUAAAAEAAEAAAAEAAUAAAADAAEAAAAEAAUAAAADAAIAAAAEAAUAAAACAAIAAAAEAAUAAAACAAMAAAAEAAUAAAABAAMAAAAEAAUAAAAAAAMAAAAEAAUAAAD//wMAAAAEAAUAAAD+/wMAAAAEAAUAAAD+/wQAAAAEAAUAAAD+/wUAAAAEAAUAAAD+/wYAAAAEAAUAAAA=")
+tile_map_data = PackedByteArray("AAABAAkAAAAEAAUAAAAAAAgAAAAEAAUAAAD//wcAAAAEAAUAAAD//wYAAAAEAAUAAAD//wgAAAAEAAUAAAAAAAkAAAAEAAUAAAABAAoAAAAEAAUAAAACAAoAAAAEAAUAAAADAAoAAAAEAAUAAAAEAAoAAAAEAAUAAAAFAAoAAAAEAAUAAAAGAAoAAAAEAAUAAAAHAAoAAAAEAAUAAAAIAAoAAAAEAAUAAAAJAAoAAAAEAAUAAAAKAAoAAAAEAAUAAAALAAoAAAAEAAUAAAAMAAoAAAAEAAUAAAANAAoAAAAEAAUAAAAOAAoAAAAEAAUAAAAPAAoAAAAEAAUAAAAPAAkAAAAEAAUAAAAPAAgAAAAEAAUAAAAQAAgAAAAEAAUAAAAQAAcAAAAEAAUAAAAQAAYAAAAEAAUAAAAQAAUAAAAEAAUAAAAQAAQAAAAEAAUAAAAQAAMAAAAEAAUAAAAQAAIAAAAEAAUAAAAPAAIAAAAEAAUAAAAOAAIAAAAEAAUAAAANAAIAAAAEAAUAAAAMAAIAAAAEAAUAAAAMAAMAAAAEAAUAAAALAAMAAAAEAAUAAAAKAAMAAAAEAAUAAAAJAAMAAAAEAAUAAAAIAAMAAAAEAAUAAAAIAAIAAAAEAAUAAAAIAAEAAAAEAAUAAAAHAAEAAAAEAAUAAAAGAAEAAAAEAAUAAAAFAAEAAAAEAAUAAAAEAAEAAAAEAAUAAAADAAEAAAAEAAUAAAADAAIAAAAEAAUAAAACAAIAAAAEAAUAAAACAAMAAAAEAAUAAAABAAMAAAAEAAUAAAAAAAMAAAAEAAUAAAD//wMAAAAEAAUAAAD+/wMAAAAEAAUAAAD+/wQAAAAEAAUAAAD+/wUAAAAEAAUAAAD+/wYAAAAEAAUAAAAWAP//AAAEAAUAAAAXAP7/AAAEAAUAAAAYAP7/AAAEAAUAAAAZAP3/AAAEAAUAAAAYAP3/AAAEAAUAAAAWAP7/AAAEAAUAAAAVAP//AAAEAAUAAAAVAAAAAAAEAAUAAAAVAAEAAAAEAAUAAAAVAAIAAAAEAAUAAAAVAAMAAAAEAAUAAAAVAAQAAAAEAAUAAAAVAAUAAAAEAAUAAAAWAAUAAAAEAAUAAAAWAAYAAAAEAAUAAAAXAAcAAAAEAAUAAAAXAAYAAAAEAAUAAAAYAAcAAAAEAAUAAAAZAAcAAAAEAAUAAAAaAAcAAAAEAAUAAAAbAAcAAAAEAAUAAAAbAAYAAAAEAAUAAAAcAAYAAAAEAAUAAAAdAAYAAAAEAAUAAAAdAAUAAAAEAAUAAAAeAAUAAAAEAAUAAAAfAAUAAAAEAAUAAAAgAAUAAAAEAAUAAAAgAAQAAAAEAAUAAAAhAAQAAAAEAAUAAAAiAAQAAAAEAAUAAAAjAAQAAAAEAAUAAAAjAAMAAAAEAAUAAAAkAAMAAAAEAAUAAAAkAAIAAAAEAAUAAAAlAAEAAAAEAAUAAAAlAAIAAAAEAAUAAAAmAAEAAAAEAAUAAAAmAAAAAAAEAAUAAAAmAP//AAAEAAUAAAAmAP7/AAAEAAUAAAAnAP7/AAAEAAUAAAAnAP3/AAAEAAUAAAAoAP3/AAAEAAUAAAAoAPz/AAAEAAUAAAAoAPv/AAAEAAUAAAAoAPr/AAAEAAUAAAAoAPn/AAAEAAUAAAAoAPj/AAAEAAUAAAAnAPj/AAAEAAUAAAAmAPj/AAAEAAUAAAAlAPj/AAAEAAUAAAAkAPj/AAAEAAUAAAAjAPj/AAAEAAUAAAAiAPj/AAAEAAUAAAAhAPj/AAAEAAUAAAAhAPn/AAAEAAUAAAAgAPn/AAAEAAUAAAAgAPr/AAAEAAUAAAAfAPr/AAAEAAUAAAAeAPr/AAAEAAUAAAAdAPr/AAAEAAUAAAAdAPv/AAAEAAUAAAAcAPv/AAAEAAUAAAAcAPz/AAAEAAUAAAAbAPz/AAAEAAUAAAAbAP3/AAAEAAUAAAAaAP3/AAAEAAUAAAA=")
 tile_set = ExtResource("1_h2yge")
 script = ExtResource("2_7mycd")
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=48431305]
+[node name="Player" parent="." unique_id=941992163 instance=ExtResource("3_7mycd")]
 unique_name_in_owner = true
 position = Vector2(61, 86)
-script = ExtResource("3_h2yge")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="Player" unique_id=1473282594]
-sprite_frames = SubResource("SpriteFrames_dg77c")
-frame_progress = 0.4202323
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1895871417]
-rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_h2yge")
-
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1927066551]
-
-[node name="Waves" type="Control" parent="Player/Camera2D" unique_id=868677271]
-visible = false
-z_index = 99
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("2_7mycd")
-vis = true
-
-[node name="Wave1" type="Sprite2D" parent="Player/Camera2D/Waves" unique_id=1373230407]
-texture_repeat = 2
-texture = ExtResource("5_kek77")
-region_enabled = true
-region_rect = Rect2(0, 0, 354.2075, 241.87717)
-script = ExtResource("6_4c57u")
-xdir = 0.8
-ydir = 1.0
-
-[node name="Wave2" type="Sprite2D" parent="Player/Camera2D/Waves" unique_id=1090774143]
-texture_repeat = 2
-texture = ExtResource("7_efxa6")
-region_enabled = true
-region_rect = Rect2(0, 0, 354.2075, 241.87717)
-script = ExtResource("6_4c57u")
-alpha = 0.5
-speed = 13.0
-playerspeed = 12.0
-xdir = -1.0
-ydir = -0.8
-
-[node name="Statue" type="Sprite2D" parent="." unique_id=695454245]
-material = SubResource("ShaderMaterial_7mycd")
+[node name="Statue" parent="." unique_id=1165469571 instance=ExtResource("8_5vw27")]
 position = Vector2(103, 83)
+
+[node name="Door2" parent="." unique_id=1569523347 node_paths=PackedStringArray("teleport") instance=ExtResource("9_kek77")]
+instance_shader_parameters/outline_colour = Color(0.291, 0.418, 0.445, 1)
+position = Vector2(417, 42)
 texture = SubResource("AtlasTexture_7mycd")
+teleport = NodePath("../Door")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Statue" unique_id=1661355515]
+[node name="Tele" type="Node2D" parent="Door2" unique_id=703174126]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Statue/StaticBody2D" unique_id=141463482]
-position = Vector2(0, 17)
-rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_kek77")
+[node name="Door" parent="." unique_id=285946172 node_paths=PackedStringArray("teleport") instance=ExtResource("9_kek77")]
+instance_shader_parameters/outline_colour = Color(0.291, 0.418, 0.445, 1)
+position = Vector2(169, 57)
+texture = SubResource("AtlasTexture_272bh")
+teleport = NodePath("../Door2")
 
-[node name="Puzzle" type="Control" parent="." unique_id=259776124]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Tele" type="Node2D" parent="Door" unique_id=178657011]
+position = Vector2(0, 20)

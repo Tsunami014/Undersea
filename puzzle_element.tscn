@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://crwdockuf3sr0"]
+
+[ext_resource type="Script" uid="uid://d0ubwo8gtqidw" path="res://puzzle.gd" id="1_chn5r"]
+[ext_resource type="Texture2D" uid="uid://btu7p01ijuhm8" path="res://assets/puzzletiles.png" id="1_uwc7m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chn5r"]
+atlas = ExtResource("1_uwc7m")
+region = Rect2(0, 0, 16, 16)
+
+[node name="PuzzleElement" type="Control" unique_id=1673822860]
+custom_minimum_size = Vector2(18, 32)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 18.0
+offset_bottom = 32.0
+script = ExtResource("1_chn5r")
+
+[node name="Highlight" type="ColorRect" parent="." unique_id=1112838317]
+layout_mode = 0
+offset_top = 7.0
+offset_right = 18.0
+offset_bottom = 25.0
+color = Color(1, 1, 0.49019608, 1)
+
+[node name="Texture" type="TextureRect" parent="." unique_id=1453289753]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 8.0
+offset_right = 17.0
+offset_bottom = 24.0
+texture = SubResource("AtlasTexture_chn5r")
