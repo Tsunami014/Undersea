@@ -1,56 +1,17 @@
-[gd_scene load_steps=18 format=4 uid="uid://ca8ud5tj3lnii"]
+[gd_scene load_steps=9 format=4 uid="uid://ca8ud5tj3lnii"]
 
 [ext_resource type="TileSet" uid="uid://bdfw371584336" path="res://tileset.tres" id="1_h2yge"]
-[ext_resource type="Texture2D" uid="uid://dwnj1svdw8y2l" path="res://assets/Turtle.png" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://73gk3ogbahji" path="res://changeVis.gd" id="2_7mycd"]
-[ext_resource type="Script" uid="uid://gd5xlecbt448" path="res://player.gd" id="3_h2yge"]
-[ext_resource type="Texture2D" uid="uid://cx6q2idha12nr" path="res://assets/wave1.png" id="5_kek77"]
-[ext_resource type="Script" uid="uid://cf5cdmj1dth8a" path="res://wave.gd" id="6_4c57u"]
-[ext_resource type="Texture2D" uid="uid://c6a0m4lcs3yr6" path="res://assets/wave2.png" id="7_efxa6"]
+[ext_resource type="PackedScene" uid="uid://xumwhpchsmdx" path="res://player.tscn" id="3_7mycd"]
 [ext_resource type="PackedScene" uid="uid://djpk025al81ol" path="res://prefabs/statue.tscn" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://6irmy22wta26" path="res://prefabs/door.tscn" id="9_kek77"]
 [ext_resource type="Texture2D" uid="uid://dfcohytqjhl8h" path="res://assets/tileset.png" id="10_4c57u"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kek77"]
-atlas = ExtResource("2_0xm2m")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4c57u"]
-atlas = ExtResource("2_0xm2m")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_efxa6"]
-atlas = ExtResource("2_0xm2m")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_dg77c"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kek77")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4c57u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_efxa6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_efxa6")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
-}]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h2yge"]
-radius = 10.000004
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dg77c"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vw27"]
 atlas = ExtResource("10_4c57u")
 region = Rect2(64, 48, 32, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ycdy4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dg77c"]
 atlas = ExtResource("10_4c57u")
 region = Rect2(64, 48, 32, 16)
 
@@ -74,49 +35,9 @@ tile_map_data = PackedByteArray("AAABAAkAAAAEAAUAAAAAAAgAAAAEAAUAAAD//wcAAAAEAAU
 tile_set = ExtResource("1_h2yge")
 script = ExtResource("2_7mycd")
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" parent="." instance=ExtResource("3_7mycd")]
 unique_name_in_owner = true
 position = Vector2(61, 86)
-script = ExtResource("3_h2yge")
-
-[node name="Sprite" type="AnimatedSprite2D" parent="Player"]
-sprite_frames = SubResource("SpriteFrames_dg77c")
-frame_progress = 0.4202323
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_h2yge")
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-
-[node name="Waves" type="Control" parent="Player/Camera2D"]
-visible = false
-z_index = 99
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("2_7mycd")
-vis = true
-
-[node name="Wave1" type="Sprite2D" parent="Player/Camera2D/Waves"]
-texture_repeat = 2
-texture = ExtResource("5_kek77")
-region_enabled = true
-region_rect = Rect2(0, 0, 354.2075, 241.87717)
-script = ExtResource("6_4c57u")
-xdir = 0.8
-ydir = 1.0
-
-[node name="Wave2" type="Sprite2D" parent="Player/Camera2D/Waves"]
-texture_repeat = 2
-texture = ExtResource("7_efxa6")
-region_enabled = true
-region_rect = Rect2(0, 0, 354.2075, 241.87717)
-script = ExtResource("6_4c57u")
-alpha = 0.5
-speed = 13.0
-playerspeed = 12.0
-xdir = -1.0
-ydir = -0.8
 
 [node name="Statue" parent="." instance=ExtResource("8_5vw27")]
 position = Vector2(103, 83)
@@ -124,7 +45,7 @@ position = Vector2(103, 83)
 [node name="Door" parent="." node_paths=PackedStringArray("teleport") instance=ExtResource("9_kek77")]
 instance_shader_parameters/outline_colour = Color(0.291, 0.418, 0.445, 1)
 position = Vector2(169, 57)
-texture = SubResource("AtlasTexture_dg77c")
+texture = SubResource("AtlasTexture_5vw27")
 teleport = NodePath("../Door2")
 
 [node name="Tele" type="Node2D" parent="Door"]
@@ -133,7 +54,7 @@ position = Vector2(0, 20)
 [node name="Door2" parent="." node_paths=PackedStringArray("teleport") instance=ExtResource("9_kek77")]
 instance_shader_parameters/outline_colour = Color(0.291, 0.418, 0.445, 1)
 position = Vector2(417, 42)
-texture = SubResource("AtlasTexture_ycdy4")
+texture = SubResource("AtlasTexture_dg77c")
 teleport = NodePath("../Door")
 
 [node name="Tele" type="Node2D" parent="Door2"]

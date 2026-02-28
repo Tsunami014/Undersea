@@ -4,8 +4,12 @@ class_name Player
 @export var accel = 500
 @export var friction = 400
 
+@export var air = 100.0
+@export var airSpeed = 2.0
+
 
 func _process(delta: float) -> void:
+	air -= delta * airSpeed
 	var vel = Input.get_vector("left", "right", "up", "down") * speed
 
 	if velocity.is_zero_approx():

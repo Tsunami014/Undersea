@@ -13,6 +13,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var playrvel = %Player.velocity.normalized()
+	var playrvel = get_owner().velocity.normalized()
 	position.x = fmod(position.x + delta*(xdir*speed-(playrvel.x*playerspeed)), 32.0)
 	position.y = fmod(position.y + delta*(ydir*speed-(playrvel.y*playerspeed)), 32.0)
