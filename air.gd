@@ -1,7 +1,7 @@
 extends Sprite2D
 
 var inside = false
-@export var airIncrease = 20.0
+@export var airIncrease = 30.0
 
 func _on_body_entered(body):
 	if body is Player:
