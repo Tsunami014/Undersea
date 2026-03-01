@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Undersea"
-run/main_scene="uid://ca8ud5tj3lnii"
+run/main_scene="uid://dpgcps8diqo5p"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

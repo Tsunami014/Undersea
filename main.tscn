@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://ca8ud5tj3lnii"]
+[gd_scene load_steps=24 format=4 uid="uid://ca8ud5tj3lnii"]
 
 [ext_resource type="TileSet" uid="uid://bdfw371584336" path="res://tileset.tres" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://btu7p01ijuhm8" path="res://assets/puzzletiles.png" id="2_5vw27"]
@@ -10,50 +10,45 @@
 [ext_resource type="PackedScene" uid="uid://6irmy22wta26" path="res://prefabs/door.tscn" id="9_kek77"]
 [ext_resource type="Texture2D" uid="uid://dfcohytqjhl8h" path="res://assets/tileset.png" id="10_4c57u"]
 [ext_resource type="Script" uid="uid://og4p868w1ngd" path="res://puztile.gd" id="10_efxa6"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4c57u"]
-atlas = ExtResource("10_4c57u")
-region = Rect2(192, 48, 32, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_efxa6"]
-atlas = ExtResource("10_4c57u")
-region = Rect2(192, 48, 32, 16)
+[ext_resource type="FontFile" uid="uid://cmpltd0aemk3a" path="res://AtlantisInlineGrunge.otf" id="11_ycdy4"]
+[ext_resource type="FontFile" uid="uid://hnvccuj6p6fs" path="res://Blue Winter.otf" id="12_w48qg"]
+[ext_resource type="Script" uid="uid://c54nxjim4kcda" path="res://btn.gd" id="13_vivmo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dg77c"]
-atlas = ExtResource("2_5vw27")
-region = Rect2(0, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ycdy4"]
-atlas = ExtResource("2_5vw27")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w48qg"]
 atlas = ExtResource("10_4c57u")
 region = Rect2(192, 48, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycdy4"]
+atlas = ExtResource("10_4c57u")
+region = Rect2(192, 48, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w48qg"]
+atlas = ExtResource("2_5vw27")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vivmo"]
 atlas = ExtResource("2_5vw27")
-
-region = Rect2(0, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2cqfq"]
-atlas = ExtResource("2_5vw27")
 region = Rect2(16, 48, 16, 16)
 
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yaehf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cqfq"]
 atlas = ExtResource("10_4c57u")
 region = Rect2(192, 48, 32, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_074og"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yaehf"]
 atlas = ExtResource("2_5vw27")
-
 region = Rect2(0, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_074og"]
+atlas = ExtResource("2_5vw27")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82xsv"]
 atlas = ExtResource("10_4c57u")
 region = Rect2(192, 48, 32, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_getpj"]
+atlas = ExtResource("2_5vw27")
+region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cegan"]
 atlas = ExtResource("10_4c57u")
@@ -89,14 +84,14 @@ position = Vector2(103, 83)
 
 [node name="Door2" parent="." node_paths=PackedStringArray("teleport") instance=ExtResource("9_kek77")]
 position = Vector2(417, 42)
-texture = SubResource("AtlasTexture_4c57u")
+texture = SubResource("AtlasTexture_dg77c")
 teleport = NodePath("../Door")
 
 [node name="Tele" type="Node2D" parent="Door2"]
 
 [node name="Door" parent="." node_paths=PackedStringArray("teleport") instance=ExtResource("9_kek77")]
 position = Vector2(169, 57)
-texture = SubResource("AtlasTexture_efxa6")
+texture = SubResource("AtlasTexture_ycdy4")
 teleport = NodePath("../Door2")
 
 [node name="Tele" type="Node2D" parent="Door"]
@@ -112,16 +107,16 @@ position = Vector2(57, 65)
 
 [node name="PuzzleTile" type="Sprite2D" parent="."]
 position = Vector2(30, 125)
-texture = SubResource("AtlasTexture_dg77c")
+texture = SubResource("AtlasTexture_w48qg")
 script = ExtResource("10_efxa6")
-tile = "orange"
+tile = "blue"
 
 [node name="PuzzleTile2" type="Sprite2D" parent="."]
 position = Vector2(238, 110)
-texture = SubResource("AtlasTexture_ycdy4")
+texture = SubResource("AtlasTexture_vivmo")
 script = ExtResource("10_efxa6")
 idx = 1
-tile = "blue"
+tile = "pink"
 
 [node name="Air2" parent="." instance=ExtResource("9_4c57u")]
 position = Vector2(474, 95)
@@ -133,7 +128,7 @@ ans = [NodePath("../PuzzleTile3"), NodePath("../PuzzleTile4")]
 
 [node name="Door3" parent="." node_paths=PackedStringArray("teleport") instance=ExtResource("9_kek77")]
 position = Vector2(986, -24)
-texture = SubResource("AtlasTexture_w48qg")
+texture = SubResource("AtlasTexture_2cqfq")
 teleport = NodePath("../Door4")
 
 [node name="Tele" type="Node2D" parent="Door3"]
@@ -141,41 +136,31 @@ position = Vector2(1, 21)
 
 [node name="PuzzleTile3" type="Sprite2D" parent="."]
 position = Vector2(687, -149)
-texture = SubResource("AtlasTexture_vivmo")
+texture = SubResource("AtlasTexture_yaehf")
 script = ExtResource("10_efxa6")
-
-tile = "green"
-
+tile = "pink"
 
 [node name="PuzzleTile4" type="Sprite2D" parent="."]
 position = Vector2(856, -8)
-texture = SubResource("AtlasTexture_2cqfq")
+texture = SubResource("AtlasTexture_074og")
 script = ExtResource("10_efxa6")
 idx = 1
 tile = "pink"
 
 [node name="Door4" parent="." node_paths=PackedStringArray("teleport") instance=ExtResource("9_kek77")]
 position = Vector2(1599, 49)
-texture = SubResource("AtlasTexture_yaehf")
+texture = SubResource("AtlasTexture_82xsv")
 teleport = NodePath("../Door3")
 
 [node name="Tele" type="Node2D" parent="Door4"]
-
-[node name="U win" type="Label" parent="."]
-offset_left = 1571.0
-offset_top = -24.0
-offset_right = 1637.0
-offset_bottom = -1.0
-text = "You win!"
 
 [node name="Air3" parent="." instance=ExtResource("9_4c57u")]
 position = Vector2(1603, 34)
 
 [node name="FakePuzzleTile" type="Sprite2D" parent="."]
 position = Vector2(744, 90)
-texture = SubResource("AtlasTexture_074og")
+texture = SubResource("AtlasTexture_getpj")
 script = ExtResource("10_efxa6")
-
 idx = 1
 tile = "blue"
 metadata/_custom_type_script = "uid://og4p868w1ngd"
@@ -184,3 +169,25 @@ metadata/_custom_type_script = "uid://og4p868w1ngd"
 position = Vector2(1603, 5)
 texture = SubResource("AtlasTexture_cegan")
 
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 1542.0
+offset_top = -24.0
+offset_right = 1693.0
+offset_bottom = 16.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("11_ycdy4")
+theme_override_font_sizes/normal_font_size = 29
+text = "You win!"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 1567.0
+offset_top = 72.0
+offset_right = 1636.0
+offset_bottom = 102.0
+theme_override_colors/font_color = Color(12.412692, 17.624435, 18.892157, 0.93333334)
+theme_override_fonts/font = ExtResource("12_w48qg")
+text = "return"
+script = ExtResource("13_vivmo")
+toScene = "res://start.tscn"
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
