@@ -31,9 +31,9 @@ func _setColour(col: Color):
 
 func setImg():
 	var pos = [
-		Rect2(64, 48, 32, 16),
-		Rect2(96, 48, 32, 16),
-		Rect2(80, 80, 32, 16)
+		Rect2(192, 48, 32, 16),
+		Rect2(192+32, 48, 32, 16),
+		Rect2(192+64, 48, 32, 16)
 	]
 	texture.region = pos[unlock]
 

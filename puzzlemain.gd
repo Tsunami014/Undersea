@@ -11,6 +11,9 @@ func _setTile(newidx: int):
 	if newidx < 0:
 		newidx = tileamnt + newidx
 	newidx = newidx % tileamnt
+	var elms = $Panel/Container.get_children()
+	elms[tileidx].selecting = false
+	elms[newidx].selecting = true
 	tileidx = newidx
 
 func increase():
@@ -19,6 +22,10 @@ func decrease():
 	_setTile(tileidx - 1)
 
 func initPuz():
+	var elms = $Panel/Container.get_children()
+	for e in elms:
+		e.choice = 0
+		e.selecting = false
 	_setTile(0)
 	visible = true
 

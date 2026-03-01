@@ -8,6 +8,7 @@ class_name Player
 @export var airSpeed = 6.0
 
 var puzzling = false
+var justclosed = false
 
 func _ready():
 	%Puzzle.visible = false
@@ -16,6 +17,7 @@ func die():
 	pass
 
 func _process(delta: float) -> void:
+	justclosed = false
 	if puzzling:
 		if Input.is_action_just_pressed("left"):
 			%Puzzle.decrease()
@@ -25,7 +27,8 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("open_puzzle"):
 			puzzling = false
 			%Puzzle.visible = false
-		
+			justclosed = true
+			%Puzzle.closePuz()
 	else:
 		air -= delta * airSpeed
 		if air < 0:
@@ -52,3 +55,4 @@ func puzzle():
 	$Sprite.stop()
 	puzzling = true
 	%Puzzle.visible = true
+	%Puzzle.initPuz()

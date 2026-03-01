@@ -1,15 +1,15 @@
-[gd_scene format=3 uid="uid://xumwhpchsmdx"]
+[gd_scene load_steps=16 format=3 uid="uid://xumwhpchsmdx"]
 
 [ext_resource type="Script" uid="uid://gd5xlecbt448" path="res://player.gd" id="1_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://dwnj1svdw8y2l" path="res://assets/Turtle.png" id="2_dw050"]
-[ext_resource type="Script" path="res://changeVis.gd" id="3_b26j0"]
+[ext_resource type="Script" uid="uid://73gk3ogbahji" path="res://changeVis.gd" id="3_b26j0"]
 [ext_resource type="Texture2D" uid="uid://cx6q2idha12nr" path="res://assets/wave1.png" id="4_n7ghd"]
 [ext_resource type="Script" uid="uid://cf5cdmj1dth8a" path="res://wave.gd" id="5_nvl01"]
 [ext_resource type="Texture2D" uid="uid://c6a0m4lcs3yr6" path="res://assets/wave2.png" id="6_ivps1"]
 [ext_resource type="Script" uid="uid://3u1abfjfpg70" path="res://airgui.gd" id="7_dw050"]
 [ext_resource type="Script" uid="uid://cmyce7ubc7e5r" path="res://puzzlemain.gd" id="7_n7ghd"]
 [ext_resource type="Texture2D" uid="uid://cem1ynbp7e436" path="res://assets/airgui.png" id="7_urp6f"]
-[ext_resource type="PackedScene" uid="uid://crwdockuf3sr0" path="res://puzzle_element.tscn" id="9_b26j0"]
+[ext_resource type="Script" uid="uid://d0ubwo8gtqidw" path="res://puzzle.gd" id="8_n7ghd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kek77"]
 atlas = ExtResource("2_dw050")
@@ -46,20 +46,20 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h2yge"]
 radius = 10.000004
 
-[node name="Player" type="CharacterBody2D" unique_id=668417635]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_1jxqw")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1446880451]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dg77c")
 frame_progress = 0.4202323
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1855928936]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_h2yge")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=986737048]
+[node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Waves" type="Control" parent="Camera2D" unique_id=1378300891]
+[node name="Waves" type="Control" parent="Camera2D"]
 visible = false
 z_index = 10
 layout_mode = 3
@@ -67,7 +67,7 @@ anchors_preset = 0
 script = ExtResource("3_b26j0")
 vis = true
 
-[node name="Wave1" type="Sprite2D" parent="Camera2D/Waves" unique_id=1589581780]
+[node name="Wave1" type="Sprite2D" parent="Camera2D/Waves"]
 texture_repeat = 2
 texture = ExtResource("4_n7ghd")
 region_enabled = true
@@ -76,7 +76,7 @@ script = ExtResource("5_nvl01")
 xdir = 0.8
 ydir = 1.0
 
-[node name="Wave2" type="Sprite2D" parent="Camera2D/Waves" unique_id=1530636513]
+[node name="Wave2" type="Sprite2D" parent="Camera2D/Waves"]
 texture_repeat = 2
 texture = ExtResource("6_ivps1")
 region_enabled = true
@@ -88,14 +88,13 @@ playerspeed = 12.0
 xdir = -1.0
 ydir = -0.8
 
-[node name="Control" type="Control" parent="Camera2D" unique_id=1383565841]
+[node name="Control" type="Control" parent="Camera2D"]
 z_index = 20
 layout_mode = 3
 anchors_preset = 0
 
-[node name="Puzzle" type="Control" parent="Camera2D/Control" unique_id=1143675103]
+[node name="Puzzle" type="Control" parent="Camera2D/Control"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -106,7 +105,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7_n7ghd")
 
-[node name="Panel" type="PanelContainer" parent="Camera2D/Control/Puzzle" unique_id=946735169]
+[node name="Panel" type="PanelContainer" parent="Camera2D/Control/Puzzle"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -122,22 +121,32 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="Container" type="HBoxContainer" parent="Camera2D/Control/Puzzle/Panel" unique_id=1130661797]
+[node name="Container" type="HBoxContainer" parent="Camera2D/Control/Puzzle/Panel"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="PuzzleElement" parent="Camera2D/Control/Puzzle/Panel/Container" unique_id=1673822860 instance=ExtResource("9_b26j0")]
+[node name="PuzzleElm" type="Control" parent="Camera2D/Control/Puzzle/Panel/Container"]
+custom_minimum_size = Vector2(18, 32)
 layout_mode = 2
+script = ExtResource("8_n7ghd")
+metadata/_custom_type_script = "uid://d0ubwo8gtqidw"
 
-[node name="Airgui" type="Control" parent="Camera2D/Control" unique_id=1143071096]
+[node name="PuzzleElm2" type="Control" parent="Camera2D/Control/Puzzle/Panel/Container"]
+custom_minimum_size = Vector2(18, 32)
+layout_mode = 2
+script = ExtResource("8_n7ghd")
+idx = 1
+metadata/_custom_type_script = "uid://d0ubwo8gtqidw"
+
+[node name="Airgui" type="Control" parent="Camera2D/Control"]
 anchors_preset = 0
 offset_left = -143.0
 offset_top = -79.0
 offset_right = -143.0
 offset_bottom = -79.0
 
-[node name="ColourBg" type="ColorRect" parent="Camera2D/Control/Airgui" unique_id=162688816]
+[node name="ColourBg" type="ColorRect" parent="Camera2D/Control/Airgui"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 3.0
@@ -145,7 +154,7 @@ offset_right = 29.0
 offset_bottom = 29.0
 color = Color(0.18916357, 0.26998547, 0.2692831, 1)
 
-[node name="Colour" type="ColorRect" parent="Camera2D/Control/Airgui" unique_id=916876600]
+[node name="Colour" type="ColorRect" parent="Camera2D/Control/Airgui"]
 layout_mode = 0
 offset_left = 29.0
 offset_top = 28.0
@@ -155,7 +164,7 @@ rotation = 3.1415927
 color = Color(0.42352942, 0.42352942, 0.42352942, 1)
 script = ExtResource("7_dw050")
 
-[node name="Texture" type="TextureRect" parent="Camera2D/Control/Airgui" unique_id=2084054591]
+[node name="Texture" type="TextureRect" parent="Camera2D/Control/Airgui"]
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0

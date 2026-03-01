@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://cb15xrvpr8jnj"]
+
+[ext_resource type="Shader" uid="uid://judv6dphnhql" path="res://outline.gdshader" id="1_bsyjg"]
+[ext_resource type="Texture2D" uid="uid://dfcohytqjhl8h" path="res://assets/tileset.png" id="2_0qeni"]
+[ext_resource type="Script" uid="uid://0paukug7nhwi" path="res://pillar.gd" id="3_mnsvc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dg77c"]
+shader = ExtResource("1_bsyjg")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycdy4"]
+atlas = ExtResource("2_0qeni")
+region = Rect2(176, 48, 16, 32)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5vw27"]
+radius = 13.0
+height = 40.0
+
+[node name="Pillar" type="Sprite2D"]
+material = SubResource("ShaderMaterial_dg77c")
+texture = SubResource("AtlasTexture_ycdy4")
+script = ExtResource("3_mnsvc")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_5vw27")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-7, 4, -7, 11, -5, 14, 2, 15, 8, 11, 7, 4)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_body_exited"]
