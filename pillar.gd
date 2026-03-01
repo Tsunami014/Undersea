@@ -1,6 +1,8 @@
 extends Sprite2D
 var inside = false
 
+@export var door: Door
+
 func _on_body_entered(body):
 	if body is Player:
 		inside = true
