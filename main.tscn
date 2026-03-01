@@ -3,17 +3,29 @@
 [ext_resource type="TileSet" uid="uid://bdfw371584336" path="res://tileset.tres" id="1_h2yge"]
 [ext_resource type="Script" path="res://changeVis.gd" id="2_7mycd"]
 [ext_resource type="PackedScene" uid="uid://xumwhpchsmdx" path="res://player.tscn" id="3_7mycd"]
+[ext_resource type="Shader" path="res://outline.gdshader" id="7_5vw27"]
 [ext_resource type="PackedScene" uid="uid://djpk025al81ol" path="res://prefabs/statue.tscn" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://0paukug7nhwi" path="res://pillar.gd" id="8_kek77"]
 [ext_resource type="PackedScene" uid="uid://6irmy22wta26" path="res://prefabs/door.tscn" id="9_kek77"]
 [ext_resource type="Texture2D" uid="uid://dfcohytqjhl8h" path="res://assets/tileset.png" id="10_4c57u"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7mycd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4c57u"]
 atlas = ExtResource("10_4c57u")
 region = Rect2(64, 48, 32, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_272bh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_efxa6"]
 atlas = ExtResource("10_4c57u")
 region = Rect2(64, 48, 32, 16)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dg77c"]
+shader = ExtResource("7_5vw27")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycdy4"]
+atlas = ExtResource("10_4c57u")
+region = Rect2(144, 48, 16, 32)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5vw27"]
+radius = 13.0
 
 [node name="Node2D" type="Node2D" unique_id=1432825941]
 
@@ -43,18 +55,35 @@ position = Vector2(61, 86)
 position = Vector2(103, 83)
 
 [node name="Door2" parent="." unique_id=1569523347 node_paths=PackedStringArray("teleport") instance=ExtResource("9_kek77")]
-instance_shader_parameters/outline_colour = Color(0.291, 0.418, 0.445, 1)
 position = Vector2(417, 42)
-texture = SubResource("AtlasTexture_7mycd")
+texture = SubResource("AtlasTexture_4c57u")
 teleport = NodePath("../Door")
 
 [node name="Tele" type="Node2D" parent="Door2" unique_id=703174126]
 
 [node name="Door" parent="." unique_id=285946172 node_paths=PackedStringArray("teleport") instance=ExtResource("9_kek77")]
-instance_shader_parameters/outline_colour = Color(0.291, 0.418, 0.445, 1)
 position = Vector2(169, 57)
-texture = SubResource("AtlasTexture_272bh")
+texture = SubResource("AtlasTexture_efxa6")
 teleport = NodePath("../Door2")
 
 [node name="Tele" type="Node2D" parent="Door" unique_id=178657011]
 position = Vector2(0, 20)
+
+[node name="Pillar" type="Sprite2D" parent="." unique_id=412467945]
+material = SubResource("ShaderMaterial_dg77c")
+position = Vector2(209, 79)
+texture = SubResource("AtlasTexture_ycdy4")
+script = ExtResource("8_kek77")
+
+[node name="Area2D" type="Area2D" parent="Pillar" unique_id=1244414373]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pillar/Area2D" unique_id=2040291636]
+shape = SubResource("CapsuleShape2D_5vw27")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Pillar" unique_id=778420663]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Pillar/StaticBody2D" unique_id=1664735262]
+polygon = PackedVector2Array(-7, 4, -7, 11, -5, 14, 2, 15, 8, 11, 7, 4)
+
+[connection signal="body_entered" from="Pillar/Area2D" to="Pillar" method="_on_body_entered"]
+[connection signal="body_exited" from="Pillar/Area2D" to="Pillar" method="_on_body_exited"]

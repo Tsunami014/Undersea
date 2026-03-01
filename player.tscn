@@ -6,7 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cx6q2idha12nr" path="res://assets/wave1.png" id="4_n7ghd"]
 [ext_resource type="Script" uid="uid://cf5cdmj1dth8a" path="res://wave.gd" id="5_nvl01"]
 [ext_resource type="Texture2D" uid="uid://c6a0m4lcs3yr6" path="res://assets/wave2.png" id="6_ivps1"]
-[ext_resource type="Script" path="res://airgui.gd" id="7_dw050"]
+[ext_resource type="Script" uid="uid://3u1abfjfpg70" path="res://airgui.gd" id="7_dw050"]
+[ext_resource type="Script" uid="uid://cmyce7ubc7e5r" path="res://puzzlemain.gd" id="7_n7ghd"]
 [ext_resource type="Texture2D" uid="uid://cem1ynbp7e436" path="res://assets/airgui.png" id="7_urp6f"]
 [ext_resource type="PackedScene" uid="uid://crwdockuf3sr0" path="res://puzzle_element.tscn" id="9_b26j0"]
 
@@ -93,6 +94,8 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="Puzzle" type="Control" parent="Camera2D/Control" unique_id=1143675103]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -101,8 +104,9 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("7_n7ghd")
 
-[node name="PanelContainer" type="PanelContainer" parent="Camera2D/Control/Puzzle" unique_id=946735169]
+[node name="Panel" type="PanelContainer" parent="Camera2D/Control/Puzzle" unique_id=946735169]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -118,12 +122,12 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Camera2D/Control/Puzzle/PanelContainer" unique_id=1130661797]
+[node name="Container" type="HBoxContainer" parent="Camera2D/Control/Puzzle/Panel" unique_id=1130661797]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="PuzzleElement" parent="Camera2D/Control/Puzzle/PanelContainer/HBoxContainer" unique_id=1673822860 instance=ExtResource("9_b26j0")]
+[node name="PuzzleElement" parent="Camera2D/Control/Puzzle/Panel/Container" unique_id=1673822860 instance=ExtResource("9_b26j0")]
 layout_mode = 2
 
 [node name="Airgui" type="Control" parent="Camera2D/Control" unique_id=1143071096]

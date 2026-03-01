@@ -1,6 +1,6 @@
 extends Control
 
-@export var selecting = true
+@export var selecting = false
 @export var choice = 0
 @export var idx = 0
 

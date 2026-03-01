@@ -7,25 +7,48 @@ class_name Player
 @export var air = 100.0
 @export var airSpeed = 6.0
 
+var puzzling = false
+
+func _ready():
+	%Puzzle.visible = false
+
 func die():
 	pass
 
 func _process(delta: float) -> void:
-	air -= delta * airSpeed
-	if air < 0:
-		die()
-	var vel = Input.get_vector("left", "right", "up", "down") * speed
+	if puzzling:
+		if Input.is_action_just_pressed("left"):
+			%Puzzle.decrease()
+		if Input.is_action_just_pressed("right"):
+			%Puzzle.increase()
 
-	if velocity.is_zero_approx():
-		velocity = velocity.move_toward(vel, friction * delta)
-		$Sprite.stop()
+		if Input.is_action_just_pressed("open_puzzle"):
+			puzzling = false
+			%Puzzle.visible = false
+		
 	else:
-		velocity = velocity.move_toward(vel, accel * delta)
-		if not $Sprite.is_playing():
-			$Sprite.play("default")
-			$Sprite.frame += 1
+		air -= delta * airSpeed
+		if air < 0:
+			die()
+		var vel = Input.get_vector("left", "right", "up", "down") * speed
+
+		if velocity.is_zero_approx():
+			velocity = velocity.move_toward(vel, friction * delta)
+			$Sprite.stop()
 		else:
-			$Sprite.play("default")
-	move_and_slide()
-	if vel.x != 0:
-		$Sprite.flip_h = vel.x < 0
+			velocity = velocity.move_toward(vel, accel * delta)
+			if not $Sprite.is_playing():
+				$Sprite.play("default")
+				$Sprite.frame += 1
+			else:
+				$Sprite.play("default")
+		move_and_slide()
+		if vel.x != 0:
+			$Sprite.flip_h = vel.x < 0
+
+func puzzle():
+	if puzzling:
+		return
+	$Sprite.stop()
+	puzzling = true
+	%Puzzle.visible = true
