@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://3u1abfjfpg70" path="res://airgui.gd" id="7_dw050"]
 [ext_resource type="Script" uid="uid://cmyce7ubc7e5r" path="res://puzzlemain.gd" id="7_n7ghd"]
 [ext_resource type="Texture2D" uid="uid://cem1ynbp7e436" path="res://assets/airgui.png" id="7_urp6f"]
-[ext_resource type="PackedScene" path="res://puzzle_element.tscn" id="9_b26j0"]
+[ext_resource type="Script" uid="uid://d0ubwo8gtqidw" path="res://puzzle.gd" id="8_n7ghd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kek77"]
 atlas = ExtResource("2_dw050")
@@ -95,7 +95,6 @@ anchors_preset = 0
 
 [node name="Puzzle" type="Control" parent="Camera2D/Control"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -127,8 +126,18 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="PuzzleElement" parent="Camera2D/Control/Puzzle/Panel/Container" instance=ExtResource("9_b26j0")]
+[node name="PuzzleElm" type="Control" parent="Camera2D/Control/Puzzle/Panel/Container"]
+custom_minimum_size = Vector2(18, 32)
 layout_mode = 2
+script = ExtResource("8_n7ghd")
+metadata/_custom_type_script = "uid://d0ubwo8gtqidw"
+
+[node name="PuzzleElm2" type="Control" parent="Camera2D/Control/Puzzle/Panel/Container"]
+custom_minimum_size = Vector2(18, 32)
+layout_mode = 2
+script = ExtResource("8_n7ghd")
+idx = 1
+metadata/_custom_type_script = "uid://d0ubwo8gtqidw"
 
 [node name="Airgui" type="Control" parent="Camera2D/Control"]
 anchors_preset = 0
