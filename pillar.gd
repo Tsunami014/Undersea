@@ -12,10 +12,10 @@ func _on_body_exited(body, force: bool = false):
 
 func _setColour(col: Color):
 	set_instance_shader_parameter("outline_colour", col)
-	
+
 func _ready() -> void:
 	_on_body_exited(null, true)
 
 func _process(delta: float) -> void:
-	if inside and Input.is_action_just_pressed("open_puzzle"):
+	if inside and Input.is_action_just_pressed("open_puzzle") and not %Player.justclosed:
 		%Player.puzzle()

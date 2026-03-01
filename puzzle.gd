@@ -16,7 +16,9 @@ func _process(_delta: float) -> void:
 			choice -= 1
 		if Input.is_action_just_pressed("down"):
 			choice += 1
-		choice = (abs(choice) % maxidx)
+		if choice < 0:
+			choice = maxidx + choice
+		choice = (choice % maxidx)
 	$Texture.texture.region = Rect2(
 		idx*16, choice*16, 16, 16
 	)
