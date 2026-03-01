@@ -13,3 +13,4 @@ func _on_body_exited(body):
 func _process(delta: float) -> void:
 	if inside:
 		%Player.air += delta * (airIncrease + %Player.airSpeed)
+		%Player.lastSafePos = %Player.global_position

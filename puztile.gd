@@ -14,14 +14,15 @@ const ATLAS = preload("res://assets/puzzletiles.png")
 func _ready() -> void:
 	var tex = AtlasTexture.new()
 	tex.atlas = ATLAS
-	tex.region = Rect2(
+	texture = tex
+	reload()
+	%Player.connect("death", reload)
+
+func reload():
+	tile = order[randi_range(0, len(order)-1)]
+	texture.region = Rect2(
 		idx*16, getTile()*16, 16, 16
 	)
-	texture = tex
 
 func getTile() -> int:
 	return order.find(tile)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

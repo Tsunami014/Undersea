@@ -19,7 +19,7 @@ polygon = PackedVector2Array(-1, -1, -15, 0, -24, 7, -27, 16, -36, 16, -31, -5, 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(-28, -1, -30, 15, -27, 22, -19, 26, 2, 29, 14, 25, 22, 20, 24, 13, 11, -5)
+polygon = PackedVector2Array(-21, -3, -27, 9, 21, 9, 11, -5)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_body_exited"]

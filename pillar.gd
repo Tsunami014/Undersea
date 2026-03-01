@@ -17,8 +17,12 @@ func _on_body_exited(body, force: bool = false):
 func _setColour(col: Color):
 	set_instance_shader_parameter("outline_colour", col)
 
+func sortans(a: PuzzleTile, b: PuzzleTile) -> bool:
+	return a.idx < b.idx
+
 func _ready() -> void:
 	_on_body_exited(null, true)
+	ans.sort_custom(sortans)
 
 func _process(delta: float) -> void:
 	if inside:

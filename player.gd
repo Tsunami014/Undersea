@@ -9,14 +9,21 @@ class_name Player
 
 @onready var puzzleobj = %Puzzle
 
+signal death()
+
+var lastSafePos: Vector2
+
 var puzzling = false
 var justclosed = false
 
 func _ready():
 	%Puzzle.visible = false
+	lastSafePos = global_position
 
 func die():
-	pass
+	air = 100.0
+	global_position = lastSafePos
+	death.emit()
 
 func _process(delta: float) -> void:
 	justclosed = false
