@@ -3,12 +3,7 @@ var inside = false
 
 @export var door: Door
 @export var loseAmnt = 30
-@export_enum("blue", "green", "orange", "pink") var ans_1: String = "blue"
-@export_enum("blue", "green", "orange", "pink") var ans_2: String = "blue"
-
-const order = [
-	"blue", "green", "orange", "pink"
-]
+@export var ans: Array[PuzzleTile]
 
 func _on_body_entered(body):
 	if body is Player:
@@ -31,8 +26,8 @@ func _process(delta: float) -> void:
 			%Player.puzzle()
 	if %Player.puzzling and Input.is_action_just_pressed("action"):
 		var out: Array[int] = []
-		for i in [ans_1, ans_2]:
-			out.append(order.find(i))
+		for i in ans:
+			out.append(i.getTile())
 		if %Player.puzzleobj.trycode(out):
 			door.openDoor()
 			queue_free()
