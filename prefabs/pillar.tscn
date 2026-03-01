@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cb15xrvpr8jnj"]
+[gd_scene format=3 uid="uid://cb15xrvpr8jnj"]
 
 [ext_resource type="Shader" uid="uid://judv6dphnhql" path="res://outline.gdshader" id="1_bsyjg"]
 [ext_resource type="Texture2D" uid="uid://dfcohytqjhl8h" path="res://assets/tileset.png" id="2_0qeni"]
