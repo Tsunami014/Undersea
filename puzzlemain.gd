@@ -21,6 +21,15 @@ func increase():
 func decrease():
 	_setTile(tileidx - 1)
 
+func trycode(codes: Array[int]) -> bool:
+	var elms = $Panel/Container.get_children()
+	var i = 0
+	for e in elms:
+		if e.choice != codes[i]:
+			return false
+		i += 1
+	return true
+
 func initPuz():
 	var elms = $Panel/Container.get_children()
 	for e in elms:

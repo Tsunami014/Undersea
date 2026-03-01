@@ -37,22 +37,20 @@ func setImg():
 	]
 	texture.region = pos[unlock]
 
-func _canGoThroughDoor() -> bool:
-	return true # TODO: this
+func openDoor():
+	if unlock == 0:
+		unlock = 1
+		teleport.unlock = 1
+		await get_tree().create_timer(0.05).timeout
+		setImg()
+		teleport.setImg()
+		await get_tree().create_timer(0.35).timeout
+		unlock = 2
+		teleport.unlock = 2
+		setImg()
+		teleport.setImg()
 
 func _process(_delta: float) -> void:
-	if inside and Input.is_action_just_pressed("action"):
-		if unlock == 0 and _canGoThroughDoor():
-			unlock = 1
-			teleport.unlock = 1
-			await get_tree().create_timer(0.05).timeout
-			setImg()
-			teleport.setImg()
-			await get_tree().create_timer(0.35).timeout
-			unlock = 2
-			teleport.unlock = 2
-			setImg()
-			teleport.setImg()
-		elif unlock == 2:
-			%Player.global_position = teleport.get_node("Tele").global_position
-			%Player.velocity = Vector2(0, 0)
+	if inside and unlock == 2 and Input.is_action_just_pressed("action"):
+		%Player.global_position = teleport.get_node("Tele").global_position
+		%Player.velocity = Vector2(0, 0)

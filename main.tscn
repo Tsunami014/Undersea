@@ -84,3 +84,4 @@ position = Vector2(0, 20)
 [node name="Pillar" parent="." node_paths=PackedStringArray("door") instance=ExtResource("7_272bh")]
 position = Vector2(209, 79)
 door = NodePath("../Door")
+ans_1 = "orange"

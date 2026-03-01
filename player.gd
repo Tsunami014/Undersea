@@ -7,6 +7,8 @@ class_name Player
 @export var air = 100.0
 @export var airSpeed = 6.0
 
+@onready var puzzleobj = %Puzzle
+
 var puzzling = false
 var justclosed = false
 
@@ -25,10 +27,7 @@ func _process(delta: float) -> void:
 			%Puzzle.increase()
 
 		if Input.is_action_just_pressed("open_puzzle"):
-			puzzling = false
-			%Puzzle.visible = false
-			justclosed = true
-			%Puzzle.closePuz()
+			closePuz()
 	else:
 		air -= delta * airSpeed
 		if air < 0:
@@ -56,3 +55,8 @@ func puzzle():
 	puzzling = true
 	%Puzzle.visible = true
 	%Puzzle.initPuz()
+func closePuz():
+	puzzling = false
+	%Puzzle.visible = false
+	justclosed = true
+	%Puzzle.closePuz()
